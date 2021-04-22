@@ -314,7 +314,7 @@ the <a href="./test/">./test</a> directory, or <a href="src/grammar.coffee">./sr
 <strong>and</strong> return a <a href="http://wiki.commonjs.org/wiki/Promises/A">Common-JS Promise</a>.</p>
 <h2 id="in-a-browser-without-requirejs">In a browser without RequireJS<a class="headerlink" href="#in-a-browser-without-requirejs" title="Permanent link">⌁</a></h2>
 <p>Create an Octokat instance.</p>
-<pre><code class="js">var octo = new Octokat({
+<pre><code class="language-js">var octo = new Octokat({
   username: &quot;USER_NAME&quot;,
   password: &quot;PASSWORD&quot;
 });
@@ -325,27 +325,24 @@ octo.zen.read(cb);
 octo.repos('philschatz', 'octokat.js').fetch(cb); // Fetch repo info
 octo.me.starred('philschatz', 'octokat.js').add(cb); // Star a repo
 </code></pre>
-
 <p>Or if you prefer OAuth:</p>
-<pre><code class="js">var octo = new Octokat({
+<pre><code class="language-js">var octo = new Octokat({
   token: &quot;OAUTH_TOKEN&quot;
 });
 </code></pre>
-
 <h2 id="in-a-browser-using-requirejs">In a browser using RequireJS<a class="headerlink" href="#in-a-browser-using-requirejs" title="Permanent link">⌁</a></h2>
-<pre><code class="js">define(['octokat'], function(Octokat) {
+<pre><code class="language-js">define(['octokat'], function(Octokat) {
   var octo = new Octokat({
     username: &quot;YOU_USER&quot;,
     password: &quot;YOUR_PASSWORD&quot;
   });
 });
 </code></pre>
-
 <h2 id="in-nodejs">In Node.js<a class="headerlink" href="#in-nodejs" title="Permanent link">⌁</a></h2>
 <p>Install instructions:</p>
 <pre><code>npm install octokat --save
 </code></pre>
-<pre><code class="js">var Octokat = require('octokat');
+<pre><code class="language-js">var Octokat = require('octokat');
 var octo = new Octokat({
   username: &quot;YOU_USER&quot;,
   password: &quot;YOUR_PASSWORD&quot;
@@ -357,10 +354,9 @@ octo.zen.read(cb);
 octo.repos('philschatz', 'octokat.js').fetch(cb);    // Fetch repo info
 octo.me.starred('philschatz', 'octokat.js').add(cb); // Star a repo
 </code></pre>
-
 <h2 id="using-generators-in-nodejs-011-or-ecmascript-6-browsers">Using Generators in Node.js 0.11 (or EcmaScript 6 browsers)<a class="headerlink" href="#using-generators-in-nodejs-011-or-ecmascript-6-browsers" title="Permanent link">⌁</a></h2>
 <p>This requires Node.js 0.11 with the <code>--harmony-generators</code> flag:</p>
-<pre><code class="js">var co = require('co');
+<pre><code class="language-js">var co = require('co');
 var Octokat = require('octokat');
 var octo = new Octokat();
 
@@ -374,7 +370,6 @@ var fn = function *() {
 
 co(fn)();
 </code></pre>
-
 <h2 id="using-bower">Using bower<a class="headerlink" href="#using-bower" title="Permanent link">⌁</a></h2>
 <p>This file can be included using the bower package manager:</p>
 <pre><code>bower install octokat --save
@@ -405,20 +400,18 @@ and it will use their Promise API.</p>
 <h1 id="preview-new-apis">Preview new APIs<a class="headerlink" href="#preview-new-apis" title="Permanent link">⌁</a></h1>
 <p>To use the APIs available for preview just add a <code>acceptHeader</code> when instantiating Octokat.</p>
 <p>For example:</p>
-<pre><code class="js">var octo = new Octokat({
+<pre><code class="language-js">var octo = new Octokat({
   token: 'API_TOKEN'
   acceptHeader: 'application/vnd.github.cannonball-preview+json'
 });
 </code></pre>
-
 <h1 id="enterprise-apis">Enterprise APIs<a class="headerlink" href="#enterprise-apis" title="Permanent link">⌁</a></h1>
 <p>To use the Enterprise APIs add the root URL when instantiating Octokat:</p>
-<pre><code class="js">var octo = new Octokat({
+<pre><code class="language-js">var octo = new Octokat({
   token: 'API_TOKEN'
   rootUrl: 'https://example.com/api/v3/'
 });
 </code></pre>
-
 <h1 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">⌁</a></h1>
 <p><code>npm test</code> will run the mocha tests for Node.js and the browser.
 Additionally, they can be run in the browser by starting a web server

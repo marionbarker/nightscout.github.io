@@ -280,7 +280,6 @@
 <p>A passphrase that must be at least 12 characters long.</p>
 <pre><code>MyV3ry53cr37
 </code></pre>
-
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This is the passcode that will be required by the uploader app (if any) to send data to your site, and that will allow you to modify your site parameters from the web interface. Keep it secret, only share it with trusted people, change it if you believe it's been exposed publicly. Minimum length is 12 characters, don't make it too long and do not put special characters in it (better stick to letters and numbers). It is case-sensitive. </p>
@@ -305,26 +304,21 @@
 <p>Plugins to enable for your site. Must be a space-delimited, lower-case list. </p>
 <pre><code>careportal basal dbsize
 </code></pre>
-
 <p>Include the word <code>bridge</code> here if you are receiving data from the Dexcom Share service.</p>
 <pre><code>careportal basal dbsize bridge
 </code></pre>
-
 <p>Include <code>mmconnect</code> if you are bridging from the MiniMed CareLink service.</p>
 <pre><code>careportal basal dbsize mmconnect
 </code></pre>
-
 <p>If you don't want to decide now, add all the followings, you can disable them if you don't need them:</p>
 <pre><code>careportal basal dbsize rawbg iob maker bridge cob bwp cage iage sage boluscalc pushover treatmentnotify mmconnect loop pump profile food openaps bage alexa override cors
 </code></pre>
-
 <p></br></p>
 <h5 id="disable"><strong>DISABLE</strong><a class="headerlink" href="#disable" title="Permanent link">⌁</a></h5>
 <p>Used to disable <strong><em>default</em></strong> features, expects a space delimited list.</p>
 <p>For example this will disable the direction arrow and uploader battery information:</p>
 <pre><code>direction upbat
 </code></pre>
-
 <p></br></p>
 <h5 id="base_url"><strong>BASE_URL</strong><a class="headerlink" href="#base_url" title="Permanent link">⌁</a></h5>
 <p>Used for building links to your site's API, i.e. Pushover callbacks, usually the URL of your Nightscout site.</p>
@@ -350,7 +344,6 @@
 <p>Predict alarms uses highly tuned formula that forecasts where the BG is going based on its trend. You will <strong><em>not</em></strong> get warnings when crossing any of the <code>BG_</code> thresholds set below when using <strong><em>only</em></strong> the predict type.</p>
 <pre><code>simple
 </code></pre>
-
 <div class="admonition note">
 <p class="admonition-title">BG Thresholds</p>
 <p>These values are the ones that will trigger <code>simple</code> alarms. They are expressed in the unit you selected with <code>DISPLAY_UNITS</code>.</p>
@@ -923,7 +916,6 @@ If only `PUSHOVER_USER_KEY` is set it will be used for all info notifications, a
 
 For testing/development try [localtunnel](http://localtunnel.me/).
 </code></pre>
-
 <p></br></p>
 <h4 id="ifttt-maker">IFTTT Maker<a class="headerlink" href="#ifttt-maker" title="Permanent link">⌁</a></h4>
 <p>In addition to the normal web based alarms, and pushover, there is also integration for <a href="https://ifttt.com/maker_webhooks">IFTTT Webhooks</a>.</p>
