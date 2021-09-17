@@ -56,7 +56,11 @@
 </li>
                                     
 <li>
-    <a href="../../nightscout/new_user/" class="dropdown-item">Installation</a>
+    <a href="../../nightscout/new_user/" class="dropdown-item">Classic DIY Installation</a>
+</li>
+                                    
+<li>
+    <a href="../../vendors/T1Pal/new_user/" class="dropdown-item">Nightscout as a service</a>
 </li>
                                 </ul>
                             </li>
@@ -73,10 +77,6 @@
 </li>
                                     
 <li>
-    <a href="../../nightscout/security/" class="dropdown-item">Secure your site</a>
-</li>
-                                    
-<li>
     <a href="../../nightscout/downloaders/" class="dropdown-item">Follower Devices</a>
 </li>
                                     
@@ -90,10 +90,6 @@
                                     
 <li>
     <a href="../../nightscout/close_loop/" class="dropdown-item">Closed-loop Systems</a>
-</li>
-                                    
-<li>
-    <a href="../../nightscout/security/" class="dropdown-item">Security</a>
 </li>
                                 </ul>
                             </li>
@@ -122,7 +118,7 @@
 </li>
                                     
 <li>
-    <a href="../../nightscout/security/" class="dropdown-item">Security</a>
+    <a href="../../nightscout/pushover/" class="dropdown-item">Remote Notifications</a>
 </li>
                                 </ul>
                             </li>
@@ -221,6 +217,10 @@
             
             <li class="nav-item" data-level="1"><a href="#nightscout-page-doesnt-open" class="nav-link">Nightscout page doesn't open</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#restart-all-dynos" class="nav-link">Restart all dynos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -249,6 +249,9 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="overall-third-party-services">Overall third party services<a class="headerlink" href="#overall-third-party-services" title="Permanent link">⌁</a></h1>
+<p></br></p>
+<p><span style="font-size:smaller;"><strong>APPLIES TO:</strong></span> DIY Nightscout</p>
+<p>For <a href="../../index#nightscout-as-a-service">Nightscout as a service</a> contact directly <strong><em>support</em></strong> at <strong><em>t1pal.com</em></strong> or use the <code>Get Support</code> links.</p>
 <p></br></p>
 <h2 id="before-troubleshooting">Before troubleshooting<a class="headerlink" href="#before-troubleshooting" title="Permanent link">⌁</a></h2>
 <p></br></p>
@@ -352,10 +355,12 @@
 <li>If you didn't migrate your Heroku database from mLab to Atlas <a href="../../update/newdatabase/">create a new Atlas database</a>.</li>
 <li>If you didn't migrate from Azure to Heroku create a new site <a href="../../nightscout/new_user/">create a new Nightscout site with Heroku</a>.</li>
 <li>If you're creating a new Nightscout site, it might have failed because of a wrong connection string. Delete your Heroku app and <a href="../../nightscout/new_user/#step-4-fork-and-deploy-cgm-remote-monitor">deploy</a> again after <a href="../connection_string/#change-your-atlas-database-password">checking</a> the Atlas connection string is correct.</li>
+<li>If your site is already up to date:</li>
 </ul>
 <p></br></p>
+<h2 id="restart-all-dynos">Restart all dynos<a class="headerlink" href="#restart-all-dynos" title="Permanent link">⌁</a></h2>
 <ul>
-<li>If your site is already up to date, try to restart your app: log in Heroku, go to <code>Settings</code>, <code>More</code>, <code>Restart all dynos</code>.</li>
+<li>Log in Heroku, go to <code>Settings</code>, <code>More</code>, <code>Restart all dynos</code>.</li>
 </ul>
 <p><img src="../../update/img/MigrateNS57.png" style="zoom:80%;" ></p>
 <p></br></p>
@@ -441,22 +446,21 @@
 <p>Check your Heroku settings match your new credentials (see above)</p>
 <p></br></p>
 <h3 id="dexcom-or-carelink-data-stopping-after-a-while">Dexcom or CareLink data stopping after a while<a class="headerlink" href="#dexcom-or-carelink-data-stopping-after-a-while" title="Permanent link">⌁</a></h3>
-<p></br></p>
-<p>First verify you can see your BG in Clarity or CareLink.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CareLink with mmconnect data source stopped functioning for most . <strong>Remove the <code>mmconnect</code> plugin from <code>ENABLE</code> if you use Heroku</strong>.</p>
+</div>
+<p></br></br></p>
+<p>First verify you can see your BG in Clarity.</p>
 <p>If data is present open Heroku and check you app didn't fall asleep.</p>
 <p><img src="../img/TShoot25.png" style="zoom:80%;" ></p>
 <p></br></p>
 <p>A sleeping app might be due to your Heroku free plan: a Hobby plan makes the app never sleep. <a href="https://www.heroku.com/pricing">https://www.heroku.com/pricing</a> </p>
-<p>Another reason for a sleeping app can be due to a failure to obtain data from Dexcom Share or CareLink, check the logs to understand the reasons.</p>
-<p></br></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Some users report CareLink with mmconnect data source stopped functioning. If this is your case update Nightscout to the latest released version (min 14.1) and if it doesn't fix the issue, <strong>remove the <code>mmconnect</code> plugin from <code>ENABLE</code> until a solution is found</strong>.</p>
-</div>
+<p>Another reason for a sleeping app can be due to a failure to obtain data from Dexcom Share, check the logs to understand the reasons.</p>
 <p></br></p>
 <div class="admonition warning">
 <p class="admonition-title">UpTime Robot</p>
-<p>Using an uptime robot with a bad password, or other issues originating from Nightscout can lead to a locked account (Dexcom) or Heroku addresses ban (CareLink). This is not a recommended solution as it might generate a global Heroku IP blacklist lock that could propagate to all other users. If you use Nightscout, uploading data in the cloud or even just having a browser or an app downloading data should be enough to keep your app awake.</p>
+<p>Using an uptime robot with a bad password, or other issues originating from Nightscout can lead to a locked account (Dexcom) or Heroku addresses ban. This is not a recommended solution as it might generate a global Heroku IP blacklist lock that could propagate to all other users. If you use Nightscout, uploading data in the cloud or even just having a browser or an app downloading data should be enough to keep your app awake.</p>
 </div>
 <p></br></p>
 <h3 id="error-code-instead-of-a-bg-value">Error code instead of a BG value<a class="headerlink" href="#error-code-instead-of-a-bg-value" title="Permanent link">⌁</a></h3>

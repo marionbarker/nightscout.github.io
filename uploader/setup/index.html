@@ -56,7 +56,11 @@
 </li>
                                     
 <li>
-    <a href="../../nightscout/new_user/" class="dropdown-item">Installation</a>
+    <a href="../../nightscout/new_user/" class="dropdown-item">Classic DIY Installation</a>
+</li>
+                                    
+<li>
+    <a href="../../vendors/T1Pal/new_user/" class="dropdown-item">Nightscout as a service</a>
 </li>
                                 </ul>
                             </li>
@@ -73,10 +77,6 @@
 </li>
                                     
 <li>
-    <a href="../../nightscout/security/" class="dropdown-item">Secure your site</a>
-</li>
-                                    
-<li>
     <a href="../../nightscout/downloaders/" class="dropdown-item">Follower Devices</a>
 </li>
                                     
@@ -90,10 +90,6 @@
                                     
 <li>
     <a href="../../nightscout/close_loop/" class="dropdown-item">Closed-loop Systems</a>
-</li>
-                                    
-<li>
-    <a href="../../nightscout/security/" class="dropdown-item">Security</a>
 </li>
                                 </ul>
                             </li>
@@ -122,7 +118,7 @@
 </li>
                                     
 <li>
-    <a href="../../nightscout/security/" class="dropdown-item">Security</a>
+    <a href="../../nightscout/pushover/" class="dropdown-item">Remote Notifications</a>
 </li>
                                 </ul>
                             </li>
@@ -178,7 +174,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../nightscout/security/" class="nav-link">
+                                <a rel="next" href="../../nightscout/downloaders/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -255,8 +251,27 @@
 <p class="admonition-title">Note</p>
 <p>You usually should express the Nightscout URL in secure <strong>https://</strong>, not only http://.  (Unless you set <code>INSECURE_USE_HTTP</code> to <code>true</code>)</p>
 </div>
+<hr />
+<p><span style="font-size:smaller;"><strong>APPLIES TO:</strong></span> <img src="../../../vendors/img/Heroku.png" style="zoom:80%;" /></p>
+<p>Your <code>Nightscout URL</code> defined in Heroku by your App name, is the one that shows when you open your Nightscout site in a browser.</p>
+<p><img src="../../nightscout/img/SetupNS44.png" style="zoom:80%;" /></p>
+<p>Your Nightscout password, is the <code>API_SECRET</code> variable you can find editing your Heroku variables like <a href="../../nightscout/new_user/#editing-config-vars-in-heroku">this</a>.</p>
+<hr />
+<p><span style="font-size:smaller;"><strong>APPLIES TO:</strong></span> <img src="../../../vendors/img/T1Pal.png" style="zoom:80%;" /></p>
+<p>You will find the <code>Uploader url</code> and <code>Api Secret</code> required to configure your uploader <a href="https://www.t1pal.com/account/sites/my#Uploaders">here</a>.</p>
+<hr />
 <p></br></p>
 <h2 id="dexcom">Dexcom<a class="headerlink" href="#dexcom" title="Permanent link">⌁</a></h2>
+<p>You need at least one follower to use Dexcom Share.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you use a DIY closed loop system it is recommended that you let it upload to Nightscout instead of importing data using Dexcom Share and the <code>bridge</code> plugin.</p>
+</div>
+<p>On your master phone, touch the Share icon, enable Sharing. If you have no follower, add one. You can also invite yourself.</p>
+<p><img src="..\img\UploadCFG09.png" style="zoom:60%;" /></p>
+<p></br></p>
+<hr />
+<p><span style="font-size:smaller;"><strong>APPLIES TO:</strong></span> <img src="../../../vendors/img/Heroku.png" style="zoom:80%;" /></p>
 <p>In order to use the Dexcom Share servers to upload to Nightscout, you need to setup (and if not present add) the following variables in Heroku:</p>
 <p>From <code>Settings</code>, click on the  <code>Reveal Config Vars</code></p>
 <p><img src="../../nightscout/img/config-vars.png" width="800"></p>
@@ -276,33 +291,33 @@
 <p><em>Some people have had problems with their bridge connecting when their Dexcom passwords are entirely numeric. If you have connection issues in that case, try changing your password to something with a mix of numbers and letters.</em></p>
 </div>
 <p></br></p>
-<p>You need at least one follower to use Dexcom Share.</p>
-<p>On your master phone, touch the Share icon, enable Sharing. If you have no follower, add one. You can also invite yourself.</p>
-<p><img src="..\img\UploadCFG09.png" style="zoom:60%;" /></p>
+<hr />
+<p><span style="font-size:smaller;"><strong>APPLIES TO:</strong></span> <img src="../../../vendors/img/T1Pal.png" style="zoom:80%;" /></p>
+<p>For hosted Nightscout put your Dexcom credentials <a href="https://www.t1pal.com/account/sites/my#DataIngress">in Dexcom Bridge</a>.</p>
+<hr />
 <p></br></p>
 <h2 id="medtronic-carelink">Medtronic CareLink<a class="headerlink" href="#medtronic-carelink" title="Permanent link">⌁</a></h2>
-<p>Log in Heroku.</p>
-<p>From <code>Settings</code>, click on the  <code>Reveal Config Vars</code></p>
-<p><img src="../../nightscout/img/config-vars.png" width="800"></p>
-<p></br></p>
-<p>You need to add <code>mmconnect</code> in the <code>ENABLE</code> variable. Do not delete other entries, just add <code>mmconnect</code> after a space.</p>
-<p><img src="../../nightscout/img/NewNS38.png" style="zoom:80%;" /></p>
-<p>If you want to link your CareLink account as a data source, compile the following lines:</p>
-<p><img src="../../nightscout/img/NewNS36.png" style="zoom:80%;" /></p>
-<p>You might want to setup <a href="https://github.com/nightscout/cgm-remote-monitor/#pump-pump-monitoring">additional fields</a> for your pump.</p>
+<div class="admonition warning">
+<p class="admonition-title">This plugin is <strong>NOT</strong> functional anymore with Heroku.</p>
+</div>
+<p>You can use an Android phone with a <a href="https://github.com/benceszasz/xDripCareLinkFollower">private version of xDrip+</a>, a <a href="https://github.com/FredMK/minimed-connect-to-nightscout-wrapper">computer</a> or a <a href="https://github.com/psonnera/minimed-connect-to-nightscout-wrapper/wiki">Raspberry Pi</a> to bridge CareLink to Nightscout.</p>
+<p>Plugin setup documented <a href="https://github.com/nightscout/cgm-remote-monitor/#mmconnect-minimed-connect-bridge">here</a> with <a href="https://github.com/nightscout/cgm-remote-monitor/#pump-pump-monitoring">additional fields</a> for your pump.</p>
 <p></br></p>
 <h2 id="medtronic-600-series-with-uploader"><a href="http://pazaan.github.io/600SeriesAndroidUploader/">Medtronic 600 Series with uploader</a><a class="headerlink" href="#medtronic-600-series-with-uploader" title="Permanent link">⌁</a></h2>
 <p><img src="..\img\UploadCFG08.png" style="zoom:60%;" /></p>
+<p>You can also use <a href="https://nightscout.github.io/pages/configure/">this QR code generator</a> and the menu item <code>Scan NS-Autoconfig QR Code</code> to copy the information.</p>
+<p>For hosted Nightscout you'll find the QR code generator in <a href="https://www.t1pal.com/account/sites/my#Uploaders">Uploaders</a>, select the <code>HTTP</code> tab.</p>
 <p>You might want to setup <a href="https://github.com/nightscout/cgm-remote-monitor/#pump-pump-monitoring">additional fields</a> for your pump.</p>
 <p>Facebook Group <a href="https://www.facebook.com/groups/NightscoutForMedtronic">Nightscout for Medtronic</a></p>
 <p></br></p>
 <h2 id="xdrip"><a href="https://jamorham.github.io/#xdrip-plus">xDrip+</a><a class="headerlink" href="#xdrip" title="Permanent link">⌁</a></h2>
 <div class="admonition info">
 <p class="admonition-title">Mind the syntax!</p>
-<p><strong><code>https://API_SECRET@HerokuAppName.herokuapp.com/api/v1/</code></strong></p>
+<p><strong><code>https://API_SECRET@mysite.herokuapp.com/api/v1/</code></strong></p>
 </div>
 <p><img src="..\img\UploadCFG00.png" style="zoom:80%;" /></p>
 <p>Facebook Group <a href="https://www.facebook.com/groups/xDripG5">xDrip</a></p>
+<p>For hosted Nightscout use the QR code from <a href="https://www.t1pal.com/account/sites/my#Uploaders">Uploaders</a> after selecting the <code>XDrip</code> tab.</p>
 <p></br></p>
 <h2 id="glimp"><a href="https://play.google.com/store/apps/details?id=it.ct.glicemia">Glimp</a><a class="headerlink" href="#glimp" title="Permanent link">⌁</a></h2>
 <p><img src="..\img\UploadCFG02.png" style="zoom:80%;" /></p>

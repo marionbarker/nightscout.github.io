@@ -56,7 +56,11 @@
 </li>
                                     
 <li>
-    <a href="../new_user/" class="dropdown-item">Installation</a>
+    <a href="../new_user/" class="dropdown-item">Classic DIY Installation</a>
+</li>
+                                    
+<li>
+    <a href="../../vendors/T1Pal/new_user/" class="dropdown-item">Nightscout as a service</a>
 </li>
                                 </ul>
                             </li>
@@ -73,10 +77,6 @@
 </li>
                                     
 <li>
-    <a href="../security/" class="dropdown-item">Secure your site</a>
-</li>
-                                    
-<li>
     <a href="../downloaders/" class="dropdown-item">Follower Devices</a>
 </li>
                                     
@@ -90,10 +90,6 @@
                                     
 <li>
     <a href="../close_loop/" class="dropdown-item">Closed-loop Systems</a>
-</li>
-                                    
-<li>
-    <a href="../security/" class="dropdown-item">Security</a>
 </li>
                                 </ul>
                             </li>
@@ -122,7 +118,7 @@
 </li>
                                     
 <li>
-    <a href="../security/" class="dropdown-item">Security</a>
+    <a href="../pushover/" class="dropdown-item">Remote Notifications</a>
 </li>
                                 </ul>
                             </li>
@@ -173,7 +169,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../new_user/" class="nav-link">
+                                <a rel="prev" href="../../vendors/T1Pal/new_user/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -202,10 +198,6 @@
             
             <li class="nav-item" data-level="1"><a href="#nightscout-configuration" class="nav-link">Nightscout Configuration</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#editing-config-vars-in-heroku" class="nav-link">Editing Config Vars in Heroku</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
             <li class="nav-item" data-level="2"><a href="#nightscout-config-vars" class="nav-link">Nightscout Config Vars</a>
               <ul class="nav flex-column">
               </ul>
@@ -226,36 +218,17 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="nightscout-configuration">Nightscout Configuration<a class="headerlink" href="#nightscout-configuration" title="Permanent link">⌁</a></h1>
-<p></br></p>
-<h2 id="editing-config-vars-in-heroku">Editing Config Vars in Heroku<a class="headerlink" href="#editing-config-vars-in-heroku" title="Permanent link">⌁</a></h2>
-<p></br></p>
-<p>Once Nightscout deployed, you can access your variables from <a href="https://id.heroku.com/login">Heroku</a>.</p>
-<ul>
-<li>Select your app</li>
-</ul>
-<p><img src="..\img\SetupNS00.png" style="zoom:80%;" /></p>
-<p></br></p>
-<ul>
-<li>Click <code>Settings</code></li>
-</ul>
-<p><img src="..\img\SetupNS01.png" style="zoom:80%;" /></p>
-<p></br></p>
-<ul>
-<li>Scroll down and click <code>Reveal Config Vars</code></li>
-</ul>
-<p><img src="..\img\SetupNS02.png" style="zoom:80%;" /></p>
-<p></br></p>
-<ul>
-<li>You can modify the values clicking on the pen icon</li>
-</ul>
-<p><img src="..\img\SetupNS03.png" style="zoom:80%;" /></p>
-<p></br></p>
-<ul>
-<li>Change the contents of <code>Value</code>  as needed then click <code>Save Changes</code></li>
-</ul>
-<p><img src="..\img\SetupNS04.png" style="zoom:80%;" /></p>
+<p>Nightscout configuration is held in variables , their content can be modified to change and customize the behavior (data source, security, alarms, ...) and appearance (language, colors, visible items, ...). When deploying your Nightscout, most are left with default values and with time you might want to tune your site.</p>
 <p></br></p>
 <hr />
+<p><span style="font-size:smaller;"><strong>APPLIES TO:</strong></span> <img src="../../vendors/img/Heroku.png" style="zoom:80%;" /></p>
+<h5 id="editing-config-vars-in-heroku">Editing Config Vars in Heroku<a class="headerlink" href="#editing-config-vars-in-heroku" title="Permanent link">⌁</a></h5>
+<p>See <a href="../../nightscout/new_user#editing-config-vars-in-heroku">here</a> where and how to change your variables.</p>
+<hr />
+<p><span style="font-size:smaller;"><strong>APPLIES TO:</strong></span> <img src="../../vendors/img/T1Pal.png" style="zoom:80%;" /></p>
+<p>You can change your settings in the Control Panel see <a href="../../../vendors/T1Pal/control_panel">here</a> for available variables and plugins.</p>
+<hr />
+<p></br></p>
 <h2 id="nightscout-config-vars">Nightscout Config Vars<a class="headerlink" href="#nightscout-config-vars" title="Permanent link">⌁</a></h2>
 <p></br></p>
 <h3 id="required-variables">Required variables<a class="headerlink" href="#required-variables" title="Permanent link">⌁</a></h3>
@@ -307,12 +280,10 @@
 <p>Include the word <code>bridge</code> here if you are receiving data from the Dexcom Share service.</p>
 <pre><code>careportal basal dbsize bridge
 </code></pre>
-<p>Include <code>mmconnect</code> if you are bridging from the MiniMed CareLink service.</p>
-<pre><code>careportal basal dbsize mmconnect
-</code></pre>
 <p>If you don't want to decide now, add all the followings, you can disable them if you don't need them:</p>
 <pre><code>careportal basal dbsize rawbg iob maker bridge cob bwp cage iage sage boluscalc pushover treatmentnotify mmconnect loop pump profile food openaps bage alexa override cors
 </code></pre>
+<p>Note: <code>mmconnect</code> is not functional with Heroku (if you wanted to bridge from the MiniMed CareLink service you will need another device to send data to Nightscout). If you are sending data to CareLink do <strong>NOT</strong> enable <code>mmconnect</code>.</p>
 <p></br></p>
 <h5 id="disable"><strong>DISABLE</strong><a class="headerlink" href="#disable" title="Permanent link">⌁</a></h5>
 <p>Used to disable <strong><em>default</em></strong> features, expects a space delimited list.</p>
@@ -687,7 +658,7 @@
 <li><code>CAGE_INFO</code> (<code>44</code>) - If time since last <code>Site Change</code> matches <code>CAGE_INFO</code>, user will be warned of upcoming cannula change</li>
 <li><code>CAGE_WARN</code> (<code>48</code>) - If time since last <code>Site Change</code> matches <code>CAGE_WARN</code>, user will be alarmed to to change the cannula</li>
 <li><code>CAGE_URGENT</code> (<code>72</code>) - If time since last <code>Site Change</code> matches <code>CAGE_URGENT</code>, user will be issued a persistent warning of overdue change.</li>
-<li><code>CAGE_DISPLAY</code> (<code>hours</code>) - Possible values are 'hours' or 'days'. If 'days' is selected and age of canula is greater than 24h number is displayed in days and hours</li>
+<li><code>CAGE_DISPLAY</code> (<code>hours</code>) - Possible values are <code>hours</code> or <code>days</code>. If <code>days</code> is selected and age of canula is greater than 24h number is displayed in days and hours</li>
 </ul>
 <h5 id="sage-sensor-age"><code>sage</code> (Sensor Age)<a class="headerlink" href="#sage-sensor-age" title="Permanent link">⌁</a></h5>
 <p>Calculates the number of days and hours since the last <code>Sensor Start</code> and <code>Sensor Change</code> treatment that was recorded.</p>
@@ -755,6 +726,9 @@
 </ul>
 <p></br></p>
 <h5 id="mmconnect-minimed-connect-bridge"><code>mmconnect</code> (MiniMed Connect bridge)<a class="headerlink" href="#mmconnect-minimed-connect-bridge" title="Permanent link">⌁</a></h5>
+<div class="admonition warning">
+<p class="admonition-title">This plugin is <strong>NOT</strong> functional with Heroku: do not enable it.</p>
+</div>
 <p>Transfer real-time MiniMed Connect data from the Medtronic CareLink server into Nightscout (<a href="https://github.com/nightscout/minimed-connect-to-nightscout">read more</a>) (<strong>*</strong> mandatory) with the following extended settings:</p>
 <ul>
 <li><code>MMCONNECT_USER_NAME</code> - Your user name for CareLink Connect. <strong>*</strong></li>

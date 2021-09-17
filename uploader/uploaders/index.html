@@ -56,7 +56,11 @@
 </li>
                                     
 <li>
-    <a href="../../nightscout/new_user/" class="dropdown-item">Installation</a>
+    <a href="../../nightscout/new_user/" class="dropdown-item">Classic DIY Installation</a>
+</li>
+                                    
+<li>
+    <a href="../../vendors/T1Pal/new_user/" class="dropdown-item">Nightscout as a service</a>
 </li>
                                 </ul>
                             </li>
@@ -73,10 +77,6 @@
 </li>
                                     
 <li>
-    <a href="../../nightscout/security/" class="dropdown-item">Secure your site</a>
-</li>
-                                    
-<li>
     <a href="../../nightscout/downloaders/" class="dropdown-item">Follower Devices</a>
 </li>
                                     
@@ -90,10 +90,6 @@
                                     
 <li>
     <a href="../../nightscout/close_loop/" class="dropdown-item">Closed-loop Systems</a>
-</li>
-                                    
-<li>
-    <a href="../../nightscout/security/" class="dropdown-item">Security</a>
 </li>
                                 </ul>
                             </li>
@@ -122,7 +118,7 @@
 </li>
                                     
 <li>
-    <a href="../../nightscout/security/" class="dropdown-item">Security</a>
+    <a href="../../nightscout/pushover/" class="dropdown-item">Remote Notifications</a>
 </li>
                                 </ul>
                             </li>
@@ -210,6 +206,14 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#glucomen-day" class="nav-link">Glucomen Day</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#tandem-tslim-x2" class="nav-link">Tandem t:slim X2</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#abbott-freestyle-libre" class="nav-link">Abbott Freestyle Libre</a>
               <ul class="nav flex-column">
               </ul>
@@ -237,6 +241,10 @@
 <p><img src="..\img\Upload02.png" /></p>
 <p>If you are using the Dexcom G5 and G6 sensors connected to the Dexcom app on your phone, it will upload directly to the Dexcom servers (also still known as "Dexcom Share") and you won't need to use any extra uploader or master device. </p>
 <p>For this to work, Nightscout must be configured to use the <code>bridge</code> plug-in and will then automatically pull the CGM information directly from the Dexcom servers in real-time.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you use a DIY closed loop system it is recommended that you let it upload to Nightscout instead of importing data using Dexcom Share and the <code>bridge</code> plugin.</p>
+</div>
 <p><em>Please note that at this time (early 2021), the Dexcom G5 system is effectively obsolete but many people are still using stocks of old sensors and transmitters.</em></p>
 <p>If you don't want to use the official Dexcom apps, then you can use <strong>open-source software</strong> apps for your Dexcom sensor to connect, display, alarm and also upload to Nightscout:</p>
 <p><strong>Android</strong>: xDrip+ for G4, G5 and G6. <!-- xDrip+ for G4 (1)(2)(3), G5 and G6. --></p>
@@ -257,14 +265,23 @@
 </br>
 </br></p>
 <h2 id="medtronic">Medtronic<a class="headerlink" href="#medtronic" title="Permanent link">⌁</a></h2>
-<p>If your sensor system is able to directly upload to CareLink then Nightscout will be able to get the information directly from the cloud using the <code>mmconnect</code> plugin (not valid for the newer 780G pump).</p>
+<p>If your sensor system is able to directly upload to CareLink then Nightscout might be able to get the information directly from the cloud using the <code>mmconnect</code> plugin. Unfortunately, this is <strong>not possible anymore using Heroku</strong> without a bridge device.</p>
+<p>You can use an Android phone with a <a href="https://github.com/benceszasz/xDripCareLinkFollower">private version of xDrip+</a>, a <a href="https://github.com/FredMK/minimed-connect-to-nightscout-wrapper">computer</a> or a <a href="https://github.com/psonnera/minimed-connect-to-nightscout-wrapper/wiki">Raspberry Pi</a> to bridge CareLink to Nightscout.</p>
 <p><img src="..\img\Upload04.png" />
 </br>
 </br></p>
 <p>If this isn't an option and your sensor/transmitter is connected to your pump (Medtronic 600 series pumps), then you'll need an Android phone connected with an OTG cable to your pump's connected glucose meter. The phone will need to run the <a href="http://pazaan.github.io/600SeriesAndroidUploader/">600 Series Uploader</a> app.</p>
 <p><img src="..\img\Upload05.png" />
-</br>
 </br></p>
+<p></br></p>
+<h2 id="glucomen-day">Glucomen Day<a class="headerlink" href="#glucomen-day" title="Permanent link">⌁</a></h2>
+<p>You can forward your data from GlucoLog Web using an AWS bridge documented <a href="https://github.com/yaronkhazai/gmns-bridge/tree/main/guides">here</a>.</p>
+<p></br></p>
+<p></br></p>
+<h2 id="tandem-tslim-x2">Tandem t:slim X2<a class="headerlink" href="#tandem-tslim-x2" title="Permanent link">⌁</a></h2>
+<p>You can synchronize your treatments one way from your Tandem Diabetes t:connect web/mobile application to Nightscout using  a bridge app running via <strong>Pipenv</strong> or <strong>Docker</strong> as documented <a href="https://github.com/jwoglom/tconnectsync">here</a>.</p>
+<p></br></p>
+<p></br></p>
 <h2 id="abbott-freestyle-libre">Abbott Freestyle Libre<a class="headerlink" href="#abbott-freestyle-libre" title="Permanent link">⌁</a></h2>
 <p>Non Bluetooth-enabled Freestyle Libre sensors will need an additional transmitter device fixed on top of the sensor to send readings to the uploader device. In release order here are some transmitter options: <a href="https://github.com/JoernL/LimiTTer">LimiTTer</a>, BlueReader, Blucon, MiaoMiao, Bubble, and Droplet.</p>
 <div class="admonition warning">
@@ -273,7 +290,7 @@
 </div>
 <p>Most of the transmitters have their own proprietary apps. Nearly all of these support the uploading of data to Nightscout (LinkBluCon, Tomato, Diabox, eDroplet, ...). Again, check the transmitter manufacturer's website and the relevant Facebook support groups for information.</p>
 <p><strong>Open-source apps</strong> such as <strong>xDrip+</strong>, <strong>Spike</strong> and <strong>xDrip4iOS</strong> also support most of the above transmitter devices.</p>
-<p>For Android uploader devices, this is the possibility to directly connect to the Libre 2 sensor (EU only) without an additional transmitter. Please read <a href="https://androidaps.readthedocs.io/en/latest/EN/Hardware/Libre2.html">here</a> for more information.
+<p>You can connect to the Libre 2 sensor (<strong>EU only</strong>) without an additional transmitter using <a href="https://www.minimallooper.com/post/how-to-setup-freestyle-libre-2-and-oop2-to-use-a-native-bluetooth-connection-in-xdrip">xDrip+</a>, Diabox or <a href="https://xdrip4ios.readthedocs.io/en/latest/connect/cgm/#libre">xDrip4iOS</a>.
 </br>
 </br></p>
 <h2 id="eversense">Eversense<a class="headerlink" href="#eversense" title="Permanent link">⌁</a></h2>

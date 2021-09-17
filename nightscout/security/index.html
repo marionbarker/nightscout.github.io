@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Security - Nightscout</title>
+        <title>Secure your site - Nightscout</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -56,7 +56,11 @@
 </li>
                                     
 <li>
-    <a href="../new_user/" class="dropdown-item">Installation</a>
+    <a href="../new_user/" class="dropdown-item">Classic DIY Installation</a>
+</li>
+                                    
+<li>
+    <a href="../../vendors/T1Pal/new_user/" class="dropdown-item">Nightscout as a service</a>
 </li>
                                 </ul>
                             </li>
@@ -70,10 +74,6 @@
                                     
 <li>
     <a href="../../uploader/setup/" class="dropdown-item">Configure your Uploader</a>
-</li>
-                                    
-<li>
-    <a href="./" class="dropdown-item">Secure your site</a>
 </li>
                                     
 <li>
@@ -91,10 +91,6 @@
 <li>
     <a href="../close_loop/" class="dropdown-item">Closed-loop Systems</a>
 </li>
-                                    
-<li>
-    <a href="./" class="dropdown-item">Security</a>
-</li>
                                 </ul>
                             </li>
                             <li class="dropdown active">
@@ -106,7 +102,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item">Secure your site</a>
+    <a href="./" class="dropdown-item active">Secure your site</a>
 </li>
                                     
 <li>
@@ -122,7 +118,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Security</a>
+    <a href="../pushover/" class="dropdown-item">Remote Notifications</a>
 </li>
                                 </ul>
                             </li>
@@ -173,12 +169,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../admin_tools/" class="nav-link">
+                                <a rel="prev" href="../discover/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../update/update/" class="nav-link">
+                                <a rel="next" href="../reports/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -245,6 +241,9 @@
                     <div class="col-md-9" role="main">
 
 <h2 id="nightscout-security">Nightscout Security<a class="headerlink" href="#nightscout-security" title="Permanent link">⌁</a></h2>
+<p><span style="font-size:smaller;"><strong>APPLIES TO:</strong></span> <img src="../../vendors/img/Heroku.png" style="zoom:80%;" /></p>
+<p>For <img src="../../vendors/img/T1Pal.png" style="zoom:80%;" /> users, your page is already secured and views can be defined from your <a href="https://t1pal.com/account/sites/my#Views">Share panel</a>.</p>
+<hr />
 <p>Nightscout security model is based on the following assumptions:</p>
 <ul>
 <li>The users of Nightscout only use it to process information about themselves or someone they're legally responsible for and thus own all of the data being stored in Nightscout.</li>
@@ -274,34 +273,37 @@
 <h2 id="administration-messages">Administration messages<a class="headerlink" href="#administration-messages" title="Permanent link">⌁</a></h2>
 <p>Nightscout 14.2 introduced a new feature called Admin Notifies, which can warn you about issues with Nightscout installation and security issues.</p>
 <p>If you see the red megaphone in your navigation bar, it means you have messages in the queue.</p>
-<p><img src="../img/notifies_1.png" style="zoom:80%;" /></p>
+<p><img src="../img/Security02.png" style="zoom:80%;" /></p>
 <p>You have to be authenticated to Nightscout using the API_SECRET or an authentication token that has administration access to read the messages.</p>
-<p><img src="../img/notifies_2.png" style="zoom:50%;" /></p>
-<p>There are multiple types of messages that might be shown.</p>
-<p><img src="../img/notifies_3.png" style="zoom:50%;" /></p>
+<p><img src="../img/Security03.png" style="zoom:50%;" /></p>
+<p>There are multiple types of messages that might be shown:</p>
 <p></br></p>
 <h3 id="im-seeing-a-message-about-the-api_secret-being-weak">I'm seeing a message about the API_SECRET being weak<a class="headerlink" href="#im-seeing-a-message-about-the-api_secret-being-weak" title="Permanent link">⌁</a></h3>
+<p><img src="../img/Security04.png" style="zoom:50%;" /></p>
 <p>This message is shown when cryptographic analysis if the API_SECRET shows the secret is easily guessable by a computer and should be changed. Things you can do to have this message go away:</p>
 <ul>
 <li>The API_SECRET must be at least 12 characters long, but making it even longer makes it more secure</li>
 <li>Use a mix of small and CAPITAL letters, numbers and non-alphanumeric characters such as !#%&amp;/()= in the API_SECRET
-  <em>Note: make sure your uploader and downloaders can handle special characters, you might need to express them using <a href="https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters">Percent encoding</a></em></li>
+  <em>Note: make sure your uploader and downloaders can handle special characters, you might need to express them using <a href="https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters">Percent encoding</a> for example an API_SECRET like <code>D0n't*H4ck@M3%</code> would be expressed as: <code>D0n%27t%2AH4ck%40M3%25</code></em></li>
 <li>Consider generating the API_SECRET using a password manager</li>
 </ul>
 <p>The API_SECRET is set in the Heroku Settings (see <a href="../setup_variables/#editing-config-vars-in-heroku">here</a> on how to edit the variables).</p>
 <p></br></p>
 <h3 id="im-seeing-a-message-about-authentication-failures">I'm seeing a message about authentication failures<a class="headerlink" href="#im-seeing-a-message-about-authentication-failures" title="Permanent link">⌁</a></h3>
+<p><img src="../img/Security06.png" style="zoom:50%;" /></p>
 <p>This is highly likely caused by you having installed an app on some device with the wrong API_SECRET or access token, and the app trying to authenticate to your Nightscout, or you or one of the family members have just tried to sign into Nightscout with wrong credentials.</p>
 <p>If you have apps running that use the Nightscout REST API, check you have the correct API_SECRET and/or access token configured to each.</p>
 <p>If the message keeps appearing unexpectedly or is reported against multiple IP numbers, it's possible someone is trying to brute force attack your installation and guess your API_SECRET to be able to modify data in your Nightscout. In this situation, we highly recommend you rename the Nightscout site in Heroku to change it's address and pick a name that's hard to guess.</p>
 <p></br></p>
 <h3 id="im-seeing-a-message-nightscout-is-readable-by-the-world">I'm seeing a message Nightscout is readable by the world<a class="headerlink" href="#im-seeing-a-message-nightscout-is-readable-by-the-world" title="Permanent link">⌁</a></h3>
+<p><img src="../img/Security05.png" style="zoom:50%;" /></p>
 <p>This means the site shows the CGM data to users who can guess the site address without authentication. Note Nightscout never allows data to be saved or edited without authentication, so this is not necessarily a problem depending on how hard your site address is to guess and how you want the information to be shared.</p>
 <p>If you want to have the site require authentication, read the "How to Turn Off Unauthorized Access" section below.</p>
 <p></br></p>
 <h2 id="renaming-the-nightscout-site">Renaming the Nightscout site<a class="headerlink" href="#renaming-the-nightscout-site" title="Permanent link">⌁</a></h2>
-<p>The site is renamed, thus changing the site URL, in the Heroku settings:</p>
-<p><img src="../img/rename.png" style="zoom:50%;" /></p>
+<p>If you're using <a href="https://dashboard.heroku.com/apps">Heroku</a> you can rename your Nightscout site URL in your app <code>Settings</code>.</p>
+<p>Once done, make sure all apps (uploaders and downloaders) are updated accordingly,</p>
+<p><img src="../img/Security01.png" style="zoom:80%;" /></p>
 <p></br></p>
 <h2 id="how-to-turn-off-unauthorized-access">How to Turn Off Unauthorized Access<a class="headerlink" href="#how-to-turn-off-unauthorized-access" title="Permanent link">⌁</a></h2>
 <div class="admonition warning">
